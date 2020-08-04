@@ -34,8 +34,46 @@
 
 // @lc code=start
 class Solution {
-    public int findKthLargest(int[] nums, int k) {
+    // public int findKthLargest(int[] nums, int k) {
+    //     int low = 0,hight = nums.length-1;
+    //     while(low < hight){
+    //         int i = partition(nums,low,hight); 
+    //         if(i == k-1){
+    //             return nums[i];
+    //         }
+    //         if(i < k-1){
+    //             low = i+1;
+    //         }else{
+    //             hight = i-1;
+    //         }
+    //     }
+    //     return nums[k-1] ;
+    // }
 
+    // private int partition(int[] nums,int left,int right){
+    //     int pivot = nums[left];
+    //     while(left < right){
+    //         while(left < right && nums[right] <= pivot){
+    //             right--;
+    //         }
+    //         nums[left] = nums[right];
+    //         while(left < right && nums[left] >= pivot){
+    //             left++;
+    //         }
+    //         nums[right] = nums[left];
+    //     }
+    //     nums[left] = pivot;
+    //     return left;
+    // }
+    public int findKthLargest(int[] nums, int k) {
+        PriorityQueue<Integer> pq = new PriorityQueue();
+        for(int  i :nums){
+            pq.add(i);
+            if(pq.size()>k){
+                pq.poll();
+            }
+        }
+        return pq.peek();
     }
 }
 // @lc code=end
